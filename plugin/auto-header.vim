@@ -17,6 +17,7 @@ function s:AutoHeader_getShebang(ftype)
         \ "lisp":   0,
         \ "lex":    0,
         \ "pascal": 0,
+        \ "haskell": 0,
     \ }
 
     return l:shebang_map[a:ftype]
@@ -41,6 +42,7 @@ function s:AutoHeader_getComment(ftype)
         \ "lisp":   5,
         \ "lex":    6,
         \ "pascal": 7,
+        \ "haskell": 8,
     \ }
 
     let l:comment_arr = [
@@ -52,6 +54,7 @@ function s:AutoHeader_getComment(ftype)
         \ [";;;", ";;", ";;"],
         \ ["%{\n\*\*\*", "\*\*", "\*\*\n%}"],
         \ ["{", "\..", "}"],
+        \ ["{-|", "---" , "|-}"]
     \ ]
 
     return l:comment_arr[l:comment_map[a:ftype]]
