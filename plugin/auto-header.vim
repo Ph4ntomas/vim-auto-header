@@ -20,7 +20,7 @@ function s:AutoHeader_getShebang(ftype)
         \ "haskell": 0,
     \ }
 
-    return l:shebang_map[a:ftype]
+    return has_key(l:shebang_map, a:ftype) ? l:shebang_map[a:ftype] : 0
 endfunction
 
 function s:AutoHeader_getComment(ftype)
@@ -57,7 +57,7 @@ function s:AutoHeader_getComment(ftype)
         \ ["{-|", "---" , "|-}"]
     \ ]
 
-    return l:comment_arr[l:comment_map[a:ftype]]
+    return has_key(l:comment_map, a:ftype) ? l:comment_arr[l:comment_map[a:ftype]] : []
 endfunction
 
 function! AutoHeader_create()
@@ -84,6 +84,10 @@ function! AutoHeader_create()
     setl noautoindent nosmartindent nocindent
     setl fo-=c fo-=r fo-=o
 
+    if l:comments == 0
+        return
+    endif
+
     execute "normal! gg"
 
     if l:shebang != "0"
@@ -107,11 +111,16 @@ function! AutoHeader_create()
 endfunction
 
 function! AutoHeader_update()
-    if &ft == ""    
+    if &ft == ""
         return
     endif
 
     let l:comments = s:AutoHeader_getComment(&ft)
+    if l:comments == []
+        return
+    endif
+
+
     let l:search = "g/" . l:comments[1] .. " \date Last update:/"
     let l:replace = "s/Last update: .*/Last update: " . strftime("%Y-%m-%d %H:%M")
 
