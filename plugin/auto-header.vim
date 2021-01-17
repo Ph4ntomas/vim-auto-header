@@ -130,4 +130,4 @@ function! AutoHeader_update()
 endfunction
 
 command! AutoHeader call AutoHeader_create()
-autocmd FileType c,cpp,css,java,php,make,text,sh,ruby,perl,ocaml,python,vim,tex,lisp,lex,pascal autocmd Bufwritepre,filewritepre * call AutoHeader_update()
+autocmd FileType c,cpp,css,java,php,make,text,sh,ruby,perl,ocaml,python,vim,tex,lisp,lex,pascal autocmd BufWritePre,FileWritePre * call AutoHeader_update()
