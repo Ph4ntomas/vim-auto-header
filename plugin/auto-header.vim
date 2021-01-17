@@ -84,7 +84,7 @@ function! AutoHeader_create()
     setl noautoindent nosmartindent nocindent
     setl fo-=c fo-=r fo-=o
 
-    if l:comments == 0
+    if l:comments == []
         return
     endif
 
