@@ -119,12 +119,13 @@ function! AutoHeader_update()
         return
     endif
 
-
-    let l:search = "g/" . l:comments[1] .. " \\date Last update:/"
+    echoe "test"
+    let l:search = 'g/' .. l:comments[1] .. ' \\date Last update:/'
     let l:replace = "s/Last update: .*/Last update: " . strftime("%Y-%m-%d %H:%M")
 
     execute "normal ma"
-    silent! execute l:search .. l:replace
+    echom l:search .. l:replace 
+    execute l:search .. l:replace
     execute "normal `a"
 endfunction
 
