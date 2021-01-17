@@ -121,7 +121,7 @@ function! AutoHeader_update()
     endif
 
 
-    let l:search = "g/" . l:comments[1] .. " \date Last update:/"
+    let l:search = "g/" . l:comments[1] .. " \\date Last update:/"
     let l:replace = "s/Last update: .*/Last update: " . strftime("%Y-%m-%d %H:%M")
 
     execute "normal ma"
