@@ -107,7 +107,6 @@ function! AutoHeader_create()
     let &autoindent = l:s_autoindent
     let &smartindent = l:s_smartindent 
     let &cindent = l:s_cindent
-
 endfunction
 
 function! AutoHeader_update()
@@ -130,4 +129,5 @@ function! AutoHeader_update()
 endfunction
 
 command! AutoHeader call AutoHeader_create()
+command! AutoHeaderUpd call AutoHeader_update()
 autocmd FileType c,cpp,css,java,php,make,text,sh,ruby,perl,ocaml,python,vim,tex,lisp,lex,pascal autocmd BufWritePre,FileWritePre * call AutoHeader_update()
